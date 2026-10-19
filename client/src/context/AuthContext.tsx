@@ -119,9 +119,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const passwordMap: Record<string, string> = {
         'citizen@jansankalp.gov.in': 'Jansankalp@1',
         'mla@jansankalp.gov.in': 'Jansankalp@2',
-        'staff@jansankalp.gov.in': 'Jansankalp@3',
-        'officer@jansankalp.gov.in': 'Jansankalp@4',
-        'admin@jansankalp.gov.in': 'Jansankalp@5',
       };
       const pwd = customPassword || passwordMap[email] || 'Jansankalp@1';
       await login(email, pwd);

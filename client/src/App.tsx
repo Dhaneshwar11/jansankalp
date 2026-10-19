@@ -4,8 +4,6 @@ import { Navbar } from './components/common/Navbar';
 import { RoleBanner } from './components/common/RoleBanner';
 import { CitizenPortal } from './pages/CitizenPortal';
 import { MlaDashboard } from './pages/MlaDashboard';
-import { OfficerPortal } from './pages/OfficerPortal';
-import { AdminPortal } from './pages/AdminPortal';
 import { PublicTransparencyPortal } from './pages/PublicTransparencyPortal';
 import { CreateComplaintModal } from './components/complaints/CreateComplaintModal';
 import { ComplaintDetailModal } from './components/complaints/ComplaintDetailModal';
@@ -116,12 +114,6 @@ const AppContent: React.FC = () => {
         {activeView === 'mla' && (
           <MlaDashboard key={complaintRefreshKey} onSelectComplaint={handleSelectComplaint} />
         )}
-
-        {activeView === 'officer' && (
-          <OfficerPortal key={complaintRefreshKey} onSelectComplaint={handleSelectComplaint} />
-        )}
-
-        {activeView === 'admin' && <AdminPortal />}
 
         {activeView === 'transparency' && <PublicTransparencyPortal />}
       </main>

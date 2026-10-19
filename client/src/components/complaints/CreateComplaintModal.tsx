@@ -136,11 +136,24 @@ export const CreateComplaintModal: React.FC<Props> = ({ isOpen, onClose, onCreat
         .then(res => {
           if (res.success && res.categories) {
             setCategories(res.categories);
-            if (!selectedCategory && res.categories.length > 0) {
-              setSelectedCategory(res.categories[0]);
-              if (res.categories[0].subcategories?.length > 0) {
-                setSelectedSubcategory(res.categories[0].subcategories[0]);
+            const waterCategory = res.categories.find((cat: Category) => cat.code === 'WATER');
+            const roadCategory = res.categories.find((cat: Category) => cat.code === 'ROADS');
+            const defaultCategory = waterCategory || roadCategory || res.categories[0];
+
+            if (!selectedCategory && defaultCategory) {
+              setSelectedCategory(defaultCategory);
+              const defaultSubcategory = defaultCategory.subcategories?.find((sub: Subcategory) => sub.id.includes('leak') || sub.id.includes('pipeline') || sub.name.toLowerCase().includes('pipeline')) || defaultCategory.subcategories?.[0];
+              if (defaultSubcategory) {
+                setSelectedSubcategory(defaultSubcategory);
+                setPriority(defaultSubcategory.default_priority || 'high');
               }
+
+              setTitle('Water pipeline and road excavation issue in Pune');
+              setDescription('Large underground water pipeline / utility line is being laid along the road, causing a deep trench and damaged road surface. The excavation is unsafe for commuters and road restoration is needed immediately. Please inspect the pipeline installation and restore the road surface in Pune city.');
+              setLandmark('Near residential road / utility trenching area');
+              setAddress('Shivajinagar, Pune, Maharashtra');
+              setLatitude(18.5314);
+              setLongitude(73.8567);
             }
           }
         })
@@ -419,8 +432,6 @@ export const CreateComplaintModal: React.FC<Props> = ({ isOpen, onClose, onCreat
           ))}
         </div>
       </div>
-
-      {/* Support Success Banner */}
       {supportSuccess && (
         <div className="mb-4 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-xs font-bold flex items-center gap-2 animate-in fade-in">
           <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
@@ -561,10 +572,11 @@ export const CreateComplaintModal: React.FC<Props> = ({ isOpen, onClose, onCreat
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-800 mb-1">
+              <label htmlFor="complaint-priority" className="block text-xs font-bold text-slate-800 mb-1">
                 {t('prioritySuggestion')}
               </label>
               <select
+                id="complaint-priority"
                 value={priority}
                 onChange={e => setPriority(e.target.value)}
                 className="w-full px-3.5 py-2 text-sm bg-white border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
@@ -755,10 +767,6 @@ export const CreateComplaintModal: React.FC<Props> = ({ isOpen, onClose, onCreat
               <div>
                 <span className="text-slate-500">{t('categoryLabel')}:</span>{' '}
                 <span className="font-bold">{selectedCategory ? getCategoryLabel(selectedCategory) : ''}</span>
-              </div>
-              <div>
-                <span className="text-slate-500">{t('priorityLabel')}:</span>{' '}
-                <span className="font-bold uppercase text-red-600">{priority}</span>
               </div>
               <div className="col-span-2">
                 <span className="text-slate-500">{t('locationLabel')}:</span>{' '}

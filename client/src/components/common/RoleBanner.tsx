@@ -31,36 +31,6 @@ export const RoleBanner: React.FC<Props> = ({ activeView, setActiveView }) => {
       defaultView: 'mla',
       color: 'bg-blue-600',
     },
-    {
-      role: 'staff',
-      label: t('staffRole'),
-      name: 'Sunita Patil',
-      email: 'staff@jansankalp.gov.in',
-      password: 'Jansankalp@3',
-      icon: <UserCheck className="w-3.5 h-3.5" />,
-      defaultView: 'mla',
-      color: 'bg-purple-600',
-    },
-    {
-      role: 'officer',
-      label: t('officerRole'),
-      name: 'Er. Vikrant Deshmukh (PWD)',
-      email: 'officer@jansankalp.gov.in',
-      password: 'Jansankalp@4',
-      icon: <Briefcase className="w-3.5 h-3.5" />,
-      defaultView: 'officer',
-      color: 'bg-amber-600',
-    },
-    {
-      role: 'superadmin',
-      label: t('adminRole'),
-      name: 'Super Admin',
-      email: 'admin@jansankalp.gov.in',
-      password: 'Jansankalp@5',
-      icon: <Shield className="w-3.5 h-3.5" />,
-      defaultView: 'admin',
-      color: 'bg-slate-800',
-    },
   ];
 
   return (

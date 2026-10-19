@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Complaint, Constituency, AnalyticsKpi } from '../types';
 import { ConstituencyComplaintsMap } from '../components/maps/ConstituencyComplaintsMap';
 import { StatusBadge } from '../components/common/StatusBadge';
-import { PriorityBadge } from '../components/common/PriorityBadge';
 import { SlaTimer } from '../components/common/SlaTimer';
 import { ExecutivePrintReportModal } from '../components/reports/ExecutivePrintReportModal';
 import { api } from '../services/api';
@@ -325,7 +324,6 @@ export const MlaDashboard: React.FC<Props> = ({ onSelectComplaint }) => {
                 <th className="py-3 px-4">{t('titleCategory')}</th>
                 <th className="py-3 px-4">{t('citizen')}</th>
                 <th className="py-3 px-4">{t('departmentOfficer')}</th>
-                <th className="py-3 px-4">Priority</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4">{t('slaCountdown')}</th>
                 <th className="py-3 px-4 text-right">{t('action')}</th>
@@ -358,9 +356,6 @@ export const MlaDashboard: React.FC<Props> = ({ onSelectComplaint }) => {
                     <span className="text-[11px] text-slate-500">
                       {c.assigned_officer_name || 'No officer assigned'}
                     </span>
-                  </td>
-                  <td className="py-3 px-4">
-                    <PriorityBadge priority={c.priority} />
                   </td>
                   <td className="py-3 px-4">
                     <StatusBadge status={c.status} size="sm" />

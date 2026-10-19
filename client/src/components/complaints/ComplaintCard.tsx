@@ -1,7 +1,6 @@
 import React from 'react';
 import { Complaint } from '../../types';
 import { StatusBadge } from '../common/StatusBadge';
-import { PriorityBadge } from '../common/PriorityBadge';
 import { SlaTimer } from '../common/SlaTimer';
 import { MapPin, Building, MessageSquare, ArrowRight, Star } from 'lucide-react';
 
@@ -9,6 +8,22 @@ interface Props {
   complaint: Complaint;
   onClick: (complaint: Complaint) => void;
 }
+
+const formatComplaintDateTime = (value?: string) => {
+  if (!value) return 'Not available';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Invalid date';
+
+  return date.toLocaleString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
+};
 
 export const ComplaintCard: React.FC<Props> = ({ complaint, onClick }) => {
   return (
@@ -23,7 +38,6 @@ export const ComplaintCard: React.FC<Props> = ({ complaint, onClick }) => {
             {complaint.complaint_number}
           </span>
           <div className="flex items-center gap-1.5">
-            <PriorityBadge priority={complaint.priority} />
             <StatusBadge status={complaint.status} size="sm" />
           </div>
         </div>
@@ -41,6 +55,10 @@ export const ComplaintCard: React.FC<Props> = ({ complaint, onClick }) => {
               <span className="truncate">{complaint.subcategory_name}</span>
             </>
           )}
+        </div>
+
+        <div className="mb-2 text-[11px] font-medium text-slate-500">
+          Filed at: {formatComplaintDateTime(complaint.created_at)}
         </div>
 
         {/* Location & Department */}

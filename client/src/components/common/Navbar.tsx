@@ -74,36 +74,24 @@ export const Navbar: React.FC<Props> = ({
       id: 'citizen',
       label: t('myComplaints'),
       icon: <FileCheck2 className="w-4 h-4" />,
-      allowedRoles: ['citizen', 'mla', 'staff', 'officer', 'superadmin'],
+      allowedRoles: ['citizen', 'mla'],
     },
     {
       id: 'mla',
       label: t('mlaDashboard'),
       icon: <LayoutDashboard className="w-4 h-4" />,
-      allowedRoles: ['mla', 'staff', 'superadmin'],
-    },
-    {
-      id: 'officer',
-      label: t('departmentDesk'),
-      icon: <Building2 className="w-4 h-4" />,
-      allowedRoles: ['officer', 'staff', 'mla', 'superadmin'],
-    },
-    {
-      id: 'admin',
-      label: t('adminPanel'),
-      icon: <ShieldCheck className="w-4 h-4" />,
-      allowedRoles: ['superadmin'],
+      allowedRoles: ['mla'],
     },
     {
       id: 'transparency',
       label: t('transparency'),
       icon: <Eye className="w-4 h-4" />,
-      allowedRoles: ['citizen', 'mla', 'staff', 'officer', 'superadmin'],
+      allowedRoles: ['citizen', 'mla'],
     },
   ];
 
   const visibleNav = navItems.filter(item => item.allowedRoles.includes(role));
-  const profileRole = role === 'citizen' ? t('citizenRole') : role === 'mla' ? t('mlaRole') : role === 'staff' ? t('staffRole') : role === 'officer' ? t('officerRole') : t('adminRole');
+  const profileRole = role === 'citizen' ? t('citizenRole') : t('mlaRole');
   const profileStatus = user?.status === 'active' ? t('activeStatus') : user?.status === 'suspended' ? t('suspendedStatus') : t('pendingStatus');
   const profileFields = user ? [
     { label: t('fullName'), value: user.name },

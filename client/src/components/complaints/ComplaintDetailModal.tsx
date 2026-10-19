@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from '../common/Modal';
 import { StatusBadge } from '../common/StatusBadge';
-import { PriorityBadge } from '../common/PriorityBadge';
 import { SlaTimer } from '../common/SlaTimer';
 import { Complaint, ComplaintStatus } from '../../types';
 import { api } from '../../services/api';
@@ -31,6 +30,22 @@ interface Props {
   onClose: () => void;
   onUpdated: () => void;
 }
+
+const formatComplaintDateTime = (value?: string) => {
+  if (!value) return 'Not available';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Invalid date';
+
+  return date.toLocaleString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+  });
+};
 
 export const ComplaintDetailModal: React.FC<Props> = ({
   complaintId,
@@ -243,7 +258,7 @@ export const ComplaintDetailModal: React.FC<Props> = ({
       isOpen={isOpen}
       onClose={onClose}
       title={complaint ? complaint.complaint_number : 'Grievance Details'}
-      subtitle={complaint ? `Filed on ${new Date(complaint.created_at).toLocaleDateString()}` : ''}
+      subtitle={complaint ? `Complaint submitted at: ${formatComplaintDateTime(complaint.created_at)}` : ''}
       maxWidth="4xl"
     >
       {isLoading || !complaint ? (
@@ -262,7 +277,6 @@ export const ComplaintDetailModal: React.FC<Props> = ({
                     {complaint.complaint_number}
                   </span>
                   <StatusBadge status={complaint.status} size="lg" />
-                  <PriorityBadge priority={complaint.priority} />
                   
                   {/* Community Support Badge & Action (SRS Section 22) */}
                   <div className="flex items-center gap-1.5 ml-auto sm:ml-2">
@@ -322,7 +336,7 @@ export const ComplaintDetailModal: React.FC<Props> = ({
               </div>
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
-                <span>{new Date(complaint.created_at).toLocaleDateString()}</span>
+                <span>{formatComplaintDateTime(complaint.created_at)}</span>
               </div>
             </div>
           </div>

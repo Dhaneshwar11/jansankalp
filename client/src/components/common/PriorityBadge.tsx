@@ -39,10 +39,12 @@ export const PriorityBadge: React.FC<Props> = ({ priority, showIcon = true }) =>
 
   return (
     <span
-      className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border ${item.bg} ${item.text}`}
+      role="img"
+      aria-label={`${item.label} priority`}
+      title={`${item.label} priority`}
+      className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${item.bg} ${item.text}`}
     >
       {showIcon && item.icon}
-      <span>{item.label}</span>
     </span>
   );
 };

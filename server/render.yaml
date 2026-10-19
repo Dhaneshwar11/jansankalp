@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: jansankalp-api
+    runtime: node
+    rootDir: server
+    region: oregon
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true

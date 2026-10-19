@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JanSankalp – Public Grievance & Constituency Management Platform</title>
+<meta name="description" content="JanSankalp: a full-stack platform connecting citizens, MLAs, constituency offices and municipal departments. By Dhaneshwar Birade.">
+<style>
+  :root{--saffron:#ff9933;--green:#138808;--navy:#0b2a5b;--ink:#1c2433;--bg:#f6f8fc;--card:#fff;--muted:#5b6678}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  a{color:inherit}
+  .stripe{height:6px;background:linear-gradient(90deg,var(--saffron) 33%,#fff 33% 66%,var(--green) 66%)}
+  header{background:var(--navy);color:#fff;padding:72px 20px 80px;text-align:center}
+  header h1{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.5px}
+  header .hi{color:var(--saffron);font-size:1.15rem;margin:6px 0 14px}
+  header p{max-width:720px;margin:0 auto 28px;color:#d6def0}
+  .btn{display:inline-block;padding:12px 26px;border-radius:999px;font-weight:600;text-decoration:none;margin:6px}
+  .btn.primary{background:var(--saffron);color:#1c1200}
+  .btn.ghost{border:2px solid #fff;color:#fff}
+  main{max-width:1050px;margin:0 auto;padding:0 20px}
+  section{padding:56px 0 8px}
+  h2{font-size:1.7rem;margin-bottom:6px;color:var(--navy)}
+  .sub{color:var(--muted);margin-bottom:26px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .card{background:var(--card);border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(11,42,91,.08);border-top:4px solid var(--saffron)}
+  .card:nth-child(even){border-top-color:var(--green)}
+  .card h3{margin-bottom:8px;color:var(--navy)}
+  .card ul{padding-left:18px;color:var(--muted);font-size:.95rem}
+  .flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-top:10px}
+  .step{background:var(--navy);color:#fff;padding:8px 16px;border-radius:999px;font-size:.9rem}
+  .arrow{color:var(--saffron);font-weight:700}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:#e8eefb;color:var(--navy);padding:6px 14px;border-radius:999px;font-size:.9rem;font-weight:600}
+  .langs .chip{background:#e6f4e4;color:#0d5a05}
+  pre{background:#0f1726;color:#d6e2ff;padding:18px;border-radius:12px;overflow:auto;font-size:.9rem}
+  .about{display:flex;gap:20px;align-items:center;flex-wrap:wrap;background:var(--card);padding:24px;border-radius:14px;box-shadow:0 2px 10px rgba(11,42,91,.08)}
+  .avatar{width:84px;height:84px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:2rem;font-weight:700}
+  footer{margin-top:64px;background:var(--navy);color:#b9c6e4;text-align:center;padding:26px 20px;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<header>
+  <h1>🇮🇳 JanSankalp</h1>
+  <div class="hi">जनसंकल्प &nbsp;•&nbsp; जनसंकल्प</div>
+  <p>A full-stack public grievance &amp; constituency management platform that connects citizens, elected MLAs, constituency offices and municipal departments, all in one place.</p>
+  <a class="btn primary" href="https://github.com/Dhaneshwar11/jansankalp" target="_blank" rel="noopener">View on GitHub</a>
+  <a class="btn ghost" href="#run">Run it locally</a>
+</header>
+
+<main>
+  <section>
+    <h2>How a complaint travels</h2>
+    <p class="sub">Every grievance gets a unique reference like <b>JS-2026-XXXXXX</b> and a live status timeline.</p>
+    <div class="flow">
+      <span class="step">Submitted</span><span class="arrow">→</span>
+      <span class="step">Verified</span><span class="arrow">→</span>
+      <span class="step">Assigned</span><span class="arrow">→</span>
+      <span class="step">In Progress</span><span class="arrow">→</span>
+      <span class="step">Resolved</span><span class="arrow">→</span>
+      <span class="step">Closed</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Five connected apps</h2>
+    <p class="sub">One platform, five roles.</p>
+    <div class="grid">
+      <div class="card"><h3>1. Citizen App</h3><ul>
+        <li>Mobile OTP and email login</li>
+        <li>Map pin-drop with GPS (Leaflet / OpenStreetMap)</li>
+        <li>Duplicate detection within 200 m</li>
+        <li>Evidence upload: photo, video, PDF</li>
+        <li>Reopen complaints and rate the resolution</li>
+      </ul></div>
+      <div class="card"><h3>2. MLA Dashboard</h3><ul>
+        <li>Live KPIs: resolution rate, SLA compliance, avg. time, satisfaction</li>
+        <li>Geospatial map with ward overlays</li>
+        <li>One-click assignment to departments</li>
+        <li>Filterable reports with CSV export</li>
+      </ul></div>
+      <div class="card"><h3>3. Field Officer Desk</h3><ul>
+        <li>Department-scoped task backlog</li>
+        <li>Progress updates through to Resolved</li>
+        <li>Before / after photo proof</li>
+        <li>Comment thread with citizens and MLA office</li>
+      </ul></div>
+      <div class="card"><h3>4. Super Admin Console</h3><ul>
+        <li>Role-based access for 5 user roles</li>
+        <li>Configurable SLA targets (24h / 48h / 120h / 240h)</li>
+        <li>Tamper-evident audit trail</li>
+        <li>Departments, categories and boundaries</li>
+      </ul></div>
+      <div class="card"><h3>5. Transparency Portal</h3><ul>
+        <li>Public open-data dashboard</li>
+        <li>Resolution rates and department speed</li>
+        <li>No citizen personal data exposed</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Languages</h2>
+    <p class="sub">Fully localized so every citizen can use it.</p>
+    <div class="chips langs"><span class="chip">English</span><span class="chip">हिन्दी</span><span class="chip">मराठी</span></div>
+  </section>
+
+  <section>
+    <h2>Tech stack</h2>
+    <p class="sub">Zero-setup database, modern frontend.</p>
+    <div class="chips">
+      <span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Vite</span>
+      <span class="chip">Tailwind CSS v4</span><span class="chip">Leaflet</span><span class="chip">Node.js</span>
+      <span class="chip">Express</span><span class="chip">SQLite (better-sqlite3)</span><span class="chip">JWT</span><span class="chip">Bcrypt</span>
+    </div>
+  </section>
+
+  <section id="run">
+    <h2>Run it locally</h2>
+    <p class="sub">Needs Node.js installed. Opens the frontend on port 3000 and the API on port 5000.</p>
+<pre>git clone https://github.com/Dhaneshwar11/jansankalp.git
+cd jansankalp
+npm install
+npm run dev</pre>
+  </section>
+
+  <section>
+    <h2>About the developer</h2>
+    <div class="about">
+      <div class="avatar">DB</div>
+      <div>
+        <h3>Dhaneshwar Birade</h3>
+        <p class="sub" style="margin:0 0 8px">BCA Final Year Student · Aspiring Software Developer · PHP, MySQL &amp; Java enthusiast</p>
+        <p>GitHub: <a href="https://github.com/Dhaneshwar11" target="_blank" rel="noopener"><b>Dhaneshwar11</b></a><br>
+        Email: <a href="mailto:dhaneshwarbirade@gmail.com">dhaneshwarbirade@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 Dhaneshwar Birade · JanSankalp</footer>
+</body>
+</html>

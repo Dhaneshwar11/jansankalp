@@ -164,9 +164,6 @@ export const AuthModal: React.FC<Props> = ({ isOpen, onClose, initialMode = 'log
                 {[
                   { role: t('citizenRole'), id: 'citizen@jansankalp.gov.in', pwd: 'Jansankalp@1' },
                   { role: 'MLA', id: 'mla@jansankalp.gov.in', pwd: 'Jansankalp@2' },
-                  { role: t('staffRole'), id: 'staff@jansankalp.gov.in', pwd: 'Jansankalp@3' },
-                  { role: t('officerRole'), id: 'officer@jansankalp.gov.in', pwd: 'Jansankalp@4' },
-                  { role: t('adminRole'), id: 'admin@jansankalp.gov.in', pwd: 'Jansankalp@5' },
                 ].map(p => (
                   <button
                     key={p.role}
